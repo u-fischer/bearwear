@@ -124,6 +124,7 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 %<@@=bearwear>
 %<*package>
 \RequirePackage{xparse}
+\RequirePackage{tikzlings-bears}
 \ProvidesExplPackage {bearwear} {2020-01-12} {0.1}
   {A package for tikz bear fashion}
 \ProcessOptions\relax
@@ -139,6 +140,8 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
       }
    }
  }
+
+\definecolor{@@europablue}{RGB}{00,33,99}
 
 \cs_new_protected:Npn \@@_rightarm_path:nn #1 #2 %#1 fill, clip, #2 user
  {
@@ -173,30 +176,71 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
     \clip  (0, 1.55)     circle (0.5)    [@@reverseclip];
     \clip  (0.425, 0.3)  circle (0.28)   [@@reverseclip];
     \clip  (-0.425, 0.3) circle (0.28)   [@@reverseclip];
-    \clip (-1,0.6) --++ (0.45,0)--++(-0.5,1) --cycle[@@reverseclip] ;
-    \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,1) --cycle[@@reverseclip] ;
+    \bool_if:NTF \l_@@_t_shirt_bool
+     {
+       \clip (-1,0.6) --++ (0.45,0)--++(-0.5,5) --cycle[@@reverseclip] ;
+       \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,5) --cycle[@@reverseclip] ;
+     }
+     {
+       \clip (-1,0.6) --++ (0.45,0)--++(-0.5,1) --cycle[@@reverseclip] ;
+       \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,1) --cycle[@@reverseclip] ;
+     }
     \clip(-1,0.5) rectangle (1,1.2);
   }
 
 \cs_new_protected:Npn \@@_shirt_color:
   {
-    \exp_args:Nno \@@_leftarm_path:nn  {fill}{\l_@@_leftarm_color_tl}
-    \exp_args:Nno \@@_rightarm_path:nn {fill}{\l_@@_rightarm_color_tl}
+    \bool_if:NF \l_@@_muscle_shirt_bool
+      {
+        \exp_args:Nno \@@_leftarm_path:nn  {fill}{\l_@@_leftarm_color_tl}
+        \exp_args:Nno \@@_rightarm_path:nn {fill}{\l_@@_rightarm_color_tl}
+      }
     \exp_args:Nno \@@_body_path:nn     {fill}{\l_@@_body_color_tl}
   }
 
+\cs_new_protected:Npn \@@_shirt_pattern:
+  {
+    \bool_if:NF \l_@@_muscle_shirt_bool
+      {
+        \exp_args:Nno \@@_leftarm_path:nn  {}{\l_@@_leftarm_pattern_tl}
+        \exp_args:Nno \@@_rightarm_path:nn {}{\l_@@_rightarm_pattern_tl}
+      }
+    \exp_args:Nno \@@_body_path:nn         {}{\l_@@_body_pattern_tl}
+  }
+
+
+\bool_new:N \l_@@_t_shirt_bool
+\bool_new:N \l_@@_muscle_shirt_bool
+
+\tl_new:N \l_@@_leftarm_color_tl
+\tl_new:N \l_@@_rightarm_color_tl
+\tl_new:N \l_@@_body_color_tl
+
+\tl_new:N \l_@@_leftarm_pattern_tl
+\tl_new:N \l_@@_rightarm_pattern_tl
+\tl_new:N \l_@@_body_pattern_tl
+\tl_new:N \l_@@_deco_tl
 \keys_define:nn {@@}
  {
    leftarm  .tl_set:N = \l_@@_leftarm_color_tl,
-   leftarm  .initial:n = {white},
+   leftarm  .initial:n = {@@europablue},
+   leftarm~pattern   .tl_set:N = \l_@@_leftarm_pattern_tl ,
    rightarm .tl_set:N = \l_@@_rightarm_color_tl,
-   rightarm .initial:n = {white},
+   rightarm .initial:n = {@@europablue},
+   rightarm~pattern   .tl_set:N = \l_@@_rightarm_pattern_tl ,
    body     .tl_set:N = \l_@@_body_color_tl,
-   body     .initial:n = {white},
-   arms     .meta:n   =  {leftarm=#1,rightarm=#1},
-   shirt    .meta:n   =  {body=#1,leftarm=#1,rightarm=#1},
-
+   body     .initial:n = {@@europablue},
+   body~pattern   .tl_set:N = \l_@@_body_pattern_tl ,
+   arms     .meta:n   =  {leftarm={#1},rightarm={#1}},
+   arms~pattern .meta:n   =  {leftarm~pattern={#1},rightarm~pattern={#1}},
+   shirt    .meta:n   =  {body={#1},leftarm={#1},rightarm={#1}},
+   shirt~pattern    .meta:n   =  {body~pattern={#1},leftarm~pattern={#1},rightarm~pattern={#1}},
+   long~sleeve .bool_set_inverse:N = \l_@@_t_shirt_bool,
+   t-shirt    .bool_set:N         = \l_@@_t_shirt_bool,
+   muscle~shirt .bool_set:N       = \l_@@_muscle_shirt_bool,
+   deco         .code:n = {\tl_set:Nn \l_@@_deco_tl {path~picture = {#1}}}
  }
+
 \NewDocumentCommand\bearwear { O {} }
   {
     %\begin{scope}[even odd rule]
@@ -206,6 +250,8 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
      \@@_set_coordinates:
      \@@_clipping_path:
      \@@_shirt_color:
+     \@@_shirt_pattern:
+     \exp_args:Nno \@@_body_path:nn     {}{\l_@@_deco_tl}
     %\end{scope}
   }
 %</package>
