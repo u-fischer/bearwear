@@ -1,0 +1,103 @@
+\section{Basic Usage}
+\subsection{The shirts}
+ The package provides a number of shirts for the bear, \bearwearkey{long sleeves} and \bearwearkey{round neckline} are the defaults:
+ \begin{tcblisting}{} 
+ \tikz\bearwear % default values
+    [long sleeves, round neckline];
+ \tikz\bearwear
+   [t-shirt];
+ \tikz\bearwear
+   [muscle shirt];
+ \tikz\bearwear
+   [v-neckline];
+ \tikz\bearwear
+   [t-shirt,v-neckline];
+ \tikz\bearwear
+   [muscle shirt,v-neckline];
+  \end{tcblisting}
+  
+ \subsection{Dressing the bear}
+ 
+ To dress the shirt with the bear, simply add the \verb+\bear+ command from the \bearwearkey{tikzlings-bears} package.
+ 
+ \begin{tcblisting}{}
+ \tikz{\bear;\bearwear[v-neckline];}
+ \tikz{\bear;\bearwear[muscle shirt];}
+  \end{tcblisting}
+  
+ \subsection{Coloring the shirts}
+
+ The body and the arms of the shirts can be colored:
+
+ \begin{tcblisting}{}
+ \tikz{\bear;
+       \bearwear
+       [v-neckline,
+       leftarm=red,body=blue,rightarm=green];}
+ \tikz{\bear;\bearwear[arms=green];}
+ \tikz{\bear;
+       \bearwear
+         [shirt=
+           {shade,
+            top color=blue, 
+            bottom color=red}];}
+ \end{tcblisting} 
+ 
+ The keys \bearwearkey{arms} and \bearwearkey{shirt} are meta keys which execute the three basic keys \bearwearkey{leftarm}, \bearwearkey{rightarm} and \bearwearkey{body}.
+ 
+ Basically everything that would make sense in a \verb+\fill+ option is allowed here.  Patterns e.g. would work too:
+ 
+ \begin{tcblisting}{}
+ \tikz{\bear;
+       \bearwear
+       [v-neckline,
+        shirt  =
+         {pattern=
+          horizontal lines light blue}];}
+ \end{tcblisting} 
+ 
+ 
+ \subsection{Additional patterns}
+ 
+ As seen in the last example patterns can be added with the previous keys, but sometimes it makes sense to add them on top to preserve a background color. For this the package provides special \texttt{pattern} keys: 
+ \bearwearkey{leftarm pattern}, \bearwearkey{rightarm pattern}, \bearwearkey{arms pattern},
+ \bearwearkey{body pattern}, \bearwearkey{shirt pattern},
+ 
+ \begin{tcblisting}{}
+ \tikz{\bear;
+       \bearwear
+       [v-neckline,
+        shirt=red,
+        body pattern = 
+         {pattern=
+          {Stars[points=6,radius=0.5mm,distance=1.5mm]},
+         pattern color=yellow}];}
+ \end{tcblisting} 
+  
+ 
+  
+ \subsection{Decorations}
+ 
+ The \texttt{deco} keys add their value to a \texttt{path picture} key. 
+ 
+ \begin{tcblisting}{}
+  \tikz{\bear;
+  \bearwear[shirt deco = 
+    {\node at (bearcenter) {\includegraphics[width=5cm]{tartan3}};}]}
+    
+  \tikz{\bear;
+   \bearwear[body deco=
+    {\node at ([yshift=-1mm]bearchest) {\includegraphics[width=0.3cm]{flag}};}];}  
+    
+  \tikz{\bear;
+   \bearwear[shirt=Beige!80!black,
+     body deco=
+    {\node at ([yshift=-1mm]bearchest) {\includegraphics[width=0.5cm]{latex-project-logo}};}];}     
+  
+  \tikz{\bear;
+   \bearwear[shirt=HotPink,
+     body deco=
+    {\path  (bearchest)--++(0,-3mm)pic{hippo};}]}     
+ \end{tcblisting}
+ 
+  

@@ -1,0 +1,18 @@
+  \tikz{\bear;
+  \bearwear[shirt deco =
+    {\node at (bearcenter) {\includegraphics[width=5cm]{tartan3}};}]}
+
+  \tikz{\bear;
+   \bearwear[body deco=
+    {\node at ([yshift=-1mm]bearchest) {\includegraphics[width=0.3cm]{flag}};}];}
+
+  \tikz{\bear;
+   \bearwear[shirt=Beige!80!black,
+     body deco=
+    {\node at ([yshift=-1mm]bearchest) {\includegraphics[width=0.5cm]{latex-project-logo}};}];}
+
+  \tikz{\bear;
+   \bearwear[shirt=HotPink,
+     body deco=
+    {\path  (bearchest)--++(0,-3mm)pic{hippo};}]}
+ 

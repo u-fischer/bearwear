@@ -28,13 +28,10 @@
 \usepackage{tabularx,array,booktabs}
 \usepackage{AlegreyaSans}
 \setmainfont{Heuristica}
-\usepackage{tikzlings,csquotes,graphicx}
+\usepackage{tikzlings,tikzducks,csquotes,graphicx,bearwear}
 \usepackage[most]{tcolorbox}
 \usetikzlibrary{patterns,patterns.meta}
-\newcommand\bearwearlogo{{\sffamily\fontsize{10pt}{12pt}\selectfont
-BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0.03)},scale=0.1]
-\bear
-\end{tikzpicture}}}}}
+\newcommand\bearwearkey[1]{\texttt{#1}}
 \newcommand{\TikZ}{Ti\emph{k}Z}
 \lstdefinestyle{bearwarestyle}{% stolen and adapted from tikzlings
 	language={[latex]TeX},
@@ -47,12 +44,8 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 	alsoletter={3},
 	emphstyle=\color{red!60!black},
 	emph=[1]{
-		tikzlings,
-		tikzlings-marmots, tikzlings-bears, tikzlings-coatis, tikzlings-koalas, tikzlings-marmots, tikzlings-owls, tikzlings-penguins, tikzlings-snowmans, tikzlings-mice, tikzlings-moles, tikzlings-sloths, tikzlings-pigs, tikzlings-cats, tikzlings-hippos, tikzlings-rhinos, tikzlings-pandas,
-		body, 3D, rotatehead, sideward, blush, sleeping, whiskers, teeth, shadow, askphil, leftstep, rightstep, eye, nose, pupil, bill, feet, belly, ask, phil, mouth, buttons, rotatearms, eyes, paws, back,
-		scale, yshift, xshift, rotate, hands, muzzle, schroedinger, toes,
-		hat, tophat, beret, strawhat, ribbon, harlequin, niuqelrah, witch, magichat, magicstars, crown, queencrown, kingcrown, santa, chef, graduate, tassel, alien, book, bookcolour, signpost, signcolour, signback, speech, think, bubblecolour, pizza, cheese, baguette, cake, icecream, flavoura, flavourb, flavourc, milkshake, wine, cricket, hockey, football, crystalball, magicwand, rollingpin, lightsaber, torch, basket, easter, egga, eggb, eggc, crozier, shovel, pickaxe, umbrella, umbrellaclosed, handbag, cocktail, pupilwidth,
-	},
+		v-neckline,muscle, shirt, t-shirt, long, sleeves, round, neckline,leftarm, rightarm,arms,deco,body, pattern,bearcenter,
+        bearchest,},
 	texcsstyle=*\color{SteelBlue!50!black}\bfseries,
 	keywordstyle=\color{red!60!black}\bfseries,
 	morekeywords={tikzpicture},
@@ -70,20 +63,29 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 	sidebyside,
 	listing options={style=bearwarestyle},
 	center lower,
-	righthand width=6.5cm,
+	righthand width=4cm,
 	bottom=0pt,
 	top=0pt,
-	tikz lower,
+	%tikz lower,
 	height plus=3cm,
 	colback=SteelBlue!30!white
 }
 \lstset{style=bearwarestyle}
+\tikzset{
+  hippo/.pic = {
+   \begin{scope}[scale=0.2,transform shape]
+     \hippo;
+      \begin{scope}[yshift=0.15cm,xshift=-0.5cm,rotate=8]
+        \duck[invisible,bowtie]
+      \end{scope}
+  \end{scope}},}
 \raggedbottom
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
 % \fi
+% \input{bearwear-doc}
 % \section{Interview}
 % \includegraphics[width=4cm]{baer}
 % \begin{description}
@@ -145,12 +147,14 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 
 \cs_new_protected:Npn \@@_rightarm_path:nn #1 #2 %#1 fill, clip, #2 user
  {
-  \path[#1,#2,rotate~around={-50\char_generate:nn{58}{12}(0.525,0.9)}] (0.525,0.9) ellipse (0.35~and~0.15);
+  \path[#1,#2,rotate~around={-50\char_generate:nn{58}{12}(0.525,0.9)}]
+    (0.525,0.9) ellipse (0.35~and~0.15);
  }
 
 \cs_new_protected:Npn \@@_leftarm_path:nn #1 #2 %#1 fill, clip, #2 user
  {
-   \path[#1,#2,rotate~around={50\char_generate:nn{58}{12}(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35~and~0.15);
+   \path[#1,#2,rotate~around={50\char_generate:nn{58}{12}(-0.525,0.9)}]
+     (-0.525,0.9) ellipse (0.35~and~0.15);
  }
 
 \cs_new_protected:Npn \@@_body_path:nn #1 #2 %#1 fill, clip, #2 user
@@ -176,7 +180,8 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
     \bool_if:NTF  \l__bearwear_v_neckline_bool
      {
        \clip  (0, 1.55)     circle (0.5)    [__bearwearreverseclip]; %head
-       \clip  (-0.4, 1.55) -- (0.4, 1.55) -- (0,0.8) --cycle[__bearwearreverseclip]; %v-neck
+       \clip  (-0.4, 1.55) -- (0.4, 1.55) -- (0,0.8) --cycle[__bearwearreverseclip];
+        %v-neck
      }
       {
        \clip  (0, 1.55)     circle (0.53)    [__bearwearreverseclip]; %head
@@ -245,11 +250,13 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
    ,leftarm  .tl_set:N = \l_@@_leftarm_color_tl
    ,leftarm  .initial:n = {@@europablue}
    ,leftarm~pattern   .tl_set:N = \l_@@_leftarm_pattern_tl
-   ,leftarm~deco         .code:n = {\tl_set:Nn \l_@@_leftarm_deco_tl {path~picture = {#1}}}
+   ,leftarm~deco         .code:n =
+      {\tl_set:Nn \l_@@_leftarm_deco_tl {path~picture = {#1}}}
    ,rightarm .tl_set:N = \l_@@_rightarm_color_tl
    ,rightarm .initial:n = {@@europablue}
    ,rightarm~pattern   .tl_set:N = \l_@@_rightarm_pattern_tl
-   ,rightarm~deco         .code:n = {\tl_set:Nn \l_@@_rightarm_deco_tl {path~picture = {#1}}}
+   ,rightarm~deco         .code:n =
+      {\tl_set:Nn \l_@@_rightarm_deco_tl {path~picture = {#1}}}
    ,body     .tl_set:N = \l_@@_body_color_tl
    ,body     .initial:n = {@@europablue}
    ,body~pattern   .tl_set:N = \l_@@_body_pattern_tl
@@ -257,12 +264,15 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
    ,arms~pattern .meta:n   =  {leftarm~pattern={#1},rightarm~pattern={#1}}
    ,arms~deco .meta:n   =  {leftarm~deco={#1},rightarm~deco={#1}}
    ,shirt    .meta:n   =  {body={#1},leftarm={#1},rightarm={#1}}
-   ,shirt~pattern    .meta:n   =  {body~pattern={#1},leftarm~pattern={#1},rightarm~pattern={#1}}
-   ,shirt~deco .meta:n   =  {body~deco={#1},leftarm~deco={#1},rightarm~deco={#1}}
-   ,long~sleeve .bool_set_inverse:N = \l_@@_t_shirt_bool
+   ,shirt~pattern    .meta:n   =
+      {body~pattern={#1},leftarm~pattern={#1},rightarm~pattern={#1}}
+   ,shirt~deco .meta:n   =
+      {body~deco={#1},leftarm~deco={#1},rightarm~deco={#1}}
+   ,long~sleeves .bool_set_inverse:N = \l_@@_t_shirt_bool
    ,t-shirt    .bool_set:N         = \l_@@_t_shirt_bool
    ,muscle~shirt .bool_set:N       = \l_@@_muscle_shirt_bool
-   ,body~deco         .code:n = {\tl_set:Nn \l_@@_body_deco_tl {path~picture = {#1}}}
+   ,body~deco         .code:n =
+      {\tl_set:Nn \l_@@_body_deco_tl {path~picture = {#1}}}
    ,round~neckline .bool_set_inverse:N       = \l__bearwear_v_neckline_bool
    ,v-neckline .bool_set:N   = \l__bearwear_v_neckline_bool
  }
@@ -284,6 +294,19 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
      \@@_shirt_deco:
     \end{scope}
   }
+
+\NewDocumentCommand\bearwearlogo {} {{
+  \normalfont\fontencoding{T1}\fontfamily{AlegreyaSans-LF}\selectfont
+   BearWear
+   \raisebox{1ex}[0pt][0pt]{
+     \textcircled{
+       \begin{tikzpicture}[baseline={(0,0.03)},scale=0.1]
+           \bear;
+           \bearwear[body~deco={\node[text=white] at (bearcenter)
+              {\fontsize{\fp_eval:n{\f@size/20}pt}{\fp_eval:n{\f@size/20}pt}
+                \sffamily
+                BearWear};}]
+       \end{tikzpicture}}}}}
 %</package>
 %    \end{macrocode}
 % \PrintIndex
