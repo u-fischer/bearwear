@@ -173,7 +173,14 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 
 \cs_new_protected:Npn \@@_clipping_path:
   {
-    \clip  (0, 1.55)     circle (0.5)    [@@reverseclip];
+    \bool_if:NTF  \l__bearwear_v_neckline_bool
+     {
+       \clip  (0, 1.55)     circle (0.5)    [__bearwearreverseclip]; %head
+       \clip  (-0.4, 1.55) -- (0.4, 1.55) -- (0,0.8) --cycle[__bearwearreverseclip]; %v-neck
+     }
+      {
+       \clip  (0, 1.55)     circle (0.53)    [__bearwearreverseclip]; %head
+     }
     \clip  (0.425, 0.3)  circle (0.28)   [@@reverseclip];
     \clip  (-0.425, 0.3) circle (0.28)   [@@reverseclip];
     \bool_if:NTF \l_@@_t_shirt_bool
@@ -208,9 +215,19 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
     \exp_args:Nno \@@_body_path:nn         {}{\l_@@_body_pattern_tl}
   }
 
+\cs_new_protected:Npn \@@_shirt_deco:
+  {
+    \bool_if:NF \l_@@_muscle_shirt_bool
+      {
+        \exp_args:Nno \@@_leftarm_path:nn  {}{\l_@@_leftarm_deco_tl}
+        \exp_args:Nno \@@_rightarm_path:nn {}{\l_@@_rightarm_deco_tl}
+      }
+    \exp_args:Nno \@@_body_path:nn         {}{\l_@@_body_deco_tl}
+  }
 
 \bool_new:N \l_@@_t_shirt_bool
 \bool_new:N \l_@@_muscle_shirt_bool
+\bool_new:N \l__bearwear_round_neckline_bool
 
 \tl_new:N \l_@@_leftarm_color_tl
 \tl_new:N \l_@@_rightarm_color_tl
@@ -219,31 +236,44 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \tl_new:N \l_@@_leftarm_pattern_tl
 \tl_new:N \l_@@_rightarm_pattern_tl
 \tl_new:N \l_@@_body_pattern_tl
-\tl_new:N \l_@@_deco_tl
+\tl_new:N \l_@@_leftarm_deco_tl
+\tl_new:N \l_@@_rightarm_deco_tl
+\tl_new:N \l_@@_body_deco_tl
+
 \keys_define:nn {@@}
  {
-   leftarm  .tl_set:N = \l_@@_leftarm_color_tl,
-   leftarm  .initial:n = {@@europablue},
-   leftarm~pattern   .tl_set:N = \l_@@_leftarm_pattern_tl ,
-   rightarm .tl_set:N = \l_@@_rightarm_color_tl,
-   rightarm .initial:n = {@@europablue},
-   rightarm~pattern   .tl_set:N = \l_@@_rightarm_pattern_tl ,
-   body     .tl_set:N = \l_@@_body_color_tl,
-   body     .initial:n = {@@europablue},
-   body~pattern   .tl_set:N = \l_@@_body_pattern_tl ,
-   arms     .meta:n   =  {leftarm={#1},rightarm={#1}},
-   arms~pattern .meta:n   =  {leftarm~pattern={#1},rightarm~pattern={#1}},
-   shirt    .meta:n   =  {body={#1},leftarm={#1},rightarm={#1}},
-   shirt~pattern    .meta:n   =  {body~pattern={#1},leftarm~pattern={#1},rightarm~pattern={#1}},
-   long~sleeve .bool_set_inverse:N = \l_@@_t_shirt_bool,
-   t-shirt    .bool_set:N         = \l_@@_t_shirt_bool,
-   muscle~shirt .bool_set:N       = \l_@@_muscle_shirt_bool,
-   deco         .code:n = {\tl_set:Nn \l_@@_deco_tl {path~picture = {#1}}}
+   ,leftarm  .tl_set:N = \l_@@_leftarm_color_tl
+   ,leftarm  .initial:n = {@@europablue}
+   ,leftarm~pattern   .tl_set:N = \l_@@_leftarm_pattern_tl
+   ,leftarm~deco         .code:n = {\tl_set:Nn \l_@@_leftarm_deco_tl {path~picture = {#1}}}
+   ,rightarm .tl_set:N = \l_@@_rightarm_color_tl
+   ,rightarm .initial:n = {@@europablue}
+   ,rightarm~pattern   .tl_set:N = \l_@@_rightarm_pattern_tl
+   ,rightarm~deco         .code:n = {\tl_set:Nn \l_@@_rightarm_deco_tl {path~picture = {#1}}}
+   ,body     .tl_set:N = \l_@@_body_color_tl
+   ,body     .initial:n = {@@europablue}
+   ,body~pattern   .tl_set:N = \l_@@_body_pattern_tl
+   ,arms     .meta:n   =  {leftarm={#1},rightarm={#1}}
+   ,arms~pattern .meta:n   =  {leftarm~pattern={#1},rightarm~pattern={#1}}
+   ,arms~deco .meta:n   =  {leftarm~deco={#1},rightarm~deco={#1}}
+   ,shirt    .meta:n   =  {body={#1},leftarm={#1},rightarm={#1}}
+   ,shirt~pattern    .meta:n   =  {body~pattern={#1},leftarm~pattern={#1},rightarm~pattern={#1}}
+   ,shirt~deco .meta:n   =  {body~deco={#1},leftarm~deco={#1},rightarm~deco={#1}}
+   ,long~sleeve .bool_set_inverse:N = \l_@@_t_shirt_bool
+   ,t-shirt    .bool_set:N         = \l_@@_t_shirt_bool
+   ,muscle~shirt .bool_set:N       = \l_@@_muscle_shirt_bool
+   ,body~deco         .code:n = {\tl_set:Nn \l_@@_body_deco_tl {path~picture = {#1}}}
+   ,round~neckline .bool_set_inverse:N       = \l__bearwear_v_neckline_bool
+   ,v-neckline .bool_set:N   = \l__bearwear_v_neckline_bool
  }
 
+\NewDocumentCommand\bearwearsetup { m }
+ {
+    \keys_set:nn { @@ } {#1}
+ }
 \NewDocumentCommand\bearwear { O {} }
   {
-    %\begin{scope}[even odd rule]
+    \begin{scope}[even~odd~rule]
      % handle keys
      \keys_set:nn { @@ } {#1}
      \@@_init_path:
@@ -251,8 +281,8 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
      \@@_clipping_path:
      \@@_shirt_color:
      \@@_shirt_pattern:
-     \exp_args:Nno \@@_body_path:nn     {}{\l_@@_deco_tl}
-    %\end{scope}
+     \@@_shirt_deco:
+    \end{scope}
   }
 %</package>
 %    \end{macrocode}

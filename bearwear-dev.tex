@@ -27,12 +27,14 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 
 \begin{tikzpicture}[scale=3]
   \bear
+  \draw[red]  (-0.3, 1.55) -- (0.3, 1.55) -- (0,1) --cycle; %v-neck
+  \draw[red]  (0, 1.55)     circle (0.5) ;
   \begin{scope}[even odd rule]
   \bearwear[leftarm=yellow,
             rightarm=red,
             body={blue},
             body pattern={pattern={Stars[points=6,radius=0.5mm,distance=1.5mm]},pattern color=yellow},
-            deco = {\path ([yshift=-2mm]bearchest) pic{hippo1};}]
+            body deco = {\path ([yshift=-2mm]bearchest) pic{hippo1};}]
  % \fill[rotate around={-50:(0.525,0.9)},path picture={
 % % \node at (bearrightbreast) {\includegraphics[width=2cm,clip,trim=2cm 1cm 2cm
 %  %1cm,page=18]{example-image-duck}}
@@ -68,6 +70,16 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \begin{tikzpicture}
   \bear
   \begin{scope}[even odd rule]
+  \bearwear[shirt deco = {\node at (bearcenter) {\includegraphics[width=5cm]{tartan3}};}]
+  %\node at (0,0.8){\includegraphics[width=0.5cm,trim=2cm 0.7cm 2cm 0.7cm,clip]{flag_yellow_eps}};
+  \end{scope}
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+  \bear
+  \begin{scope}[even odd rule]
   \bearwear[leftarm=red,rightarm=yellow,body=green,muscle shirt]
   %\node at (0,0.8){\includegraphics[width=0.5cm,trim=2cm 0.7cm 2cm 0.7cm,clip]{flag_yellow_eps}};
   \end{scope}
@@ -75,20 +87,18 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 
 \begin{tikzpicture}
   \bear
-  \begin{scope}[even odd rule]
   \bearwear
   % \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
  % \fill[red,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
  % \fill[europablau] (0,0.75) ellipse (0.55 and 0.65);
   %\fill[europablau] (0,0.7) ellipse (0.35 and 0.4);
   %\node at (0,0.8){\includegraphics[width=0.5cm,trim=2cm 0.7cm 2cm 0.7cm,clip]{flag_yellow_eps}};
-  \end{scope}
-\end{tikzpicture}
+ \end{tikzpicture}
 \begin{tikzpicture}
   \bear
   \begin{scope}[even odd rule]
   \bearwear[shirt={shade,
-            top color=blue, bottom color=red},t-shirt]
+            top color=blue, bottom color=red},t-shirt,v-neckline]
   % \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
  % \fill[red,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
  % \fill[europablau] (0,0.75) ellipse (0.55 and 0.65);
