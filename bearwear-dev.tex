@@ -5,7 +5,7 @@
 \usepackage{tikzlings,tikzducks}
 \usetikzlibrary{patterns,patterns.meta}
 
-\definecolor{europablau}{RGB}{00,33,99}
+\definecolor{europablue}{RGB}{00,33,99}
 \newcommand\bearwearlogo{{\sffamily\fontsize{10pt}{12pt}\selectfont
 BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0.03)},scale=0.1]
 \bear
@@ -32,7 +32,7 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \begin{tikzpicture}[scale=3]
   %\bear
   \begin{scope}[even odd rule]
-  \bearwear
+  \bearwear[arms=red,body=blue]
   \fill[yellow,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15);
   \fill[rotate around={-50:(0.525,0.9)},path picture={
  % \node at (bearrightbreast) {\includegraphics[width=2cm,clip,trim=2cm 1cm 2cm
@@ -69,11 +69,7 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \begin{tikzpicture}
   \bear
   \begin{scope}[even odd rule]
-  \bearwear
-  \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
-  \fill[red,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
-  \fill[green] (0,0.75) ellipse (0.55 and 0.65); %body
-  %\fill[europablau] (0,0.7) ellipse (0.35 and 0.4); %inner body
+  \bearwear[leftarm=red,rightarm=yellow,body=europablue]
   %\node at (0,0.8){\includegraphics[width=0.5cm,trim=2cm 0.7cm 2cm 0.7cm,clip]{flag_yellow_eps}};
   \end{scope}
 \end{tikzpicture}
@@ -81,10 +77,10 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \begin{tikzpicture}
   \bear
   \begin{scope}[even odd rule]
-  \bearwear
+  \bearwear[body=europablue]
   % \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
  % \fill[red,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
-  \fill[europablau] (0,0.75) ellipse (0.55 and 0.65);
+ % \fill[europablau] (0,0.75) ellipse (0.55 and 0.65);
   %\fill[europablau] (0,0.7) ellipse (0.35 and 0.4);
   %\node at (0,0.8){\includegraphics[width=0.5cm,trim=2cm 0.7cm 2cm 0.7cm,clip]{flag_yellow_eps}};
   \end{scope}
