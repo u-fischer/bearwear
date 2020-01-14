@@ -128,11 +128,65 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
   {A package for tikz bear fashion}
 \ProcessOptions\relax
 % a tikzset style to reverse the clip:
-\tikzset{bearwear_reverseclip/.style={insert path={
-   (current bounding box.south west) --(current bounding box.north west)
- --(current bounding box.north east) --  (current bounding box.south east)
- -- cycle} }}
+\tikzset
+  {@@reverseclip/.style=
+    {insert~path=
+      {
+       (current~bounding~box.south~west) --  (current~bounding~box.north~west)
+       --
+       (current~bounding~box.north~east) --  (current~bounding~box.south~east)
+       -- cycle
+      }
+   }
+ }
 
+\cs_new_protected:Npn \__@@_rightarm_path:nn #1 #2 %#1 fill, clip, #2 user
+ {
+  \path[#1,#2,rotate~around={-50\char_generate:nn{58}{12}(0.525,0.9)}] (0.525,0.9) ellipse (0.35~and~0.15);
+ }
+
+\cs_new_protected:Npn \__@@_leftarm_path:nn #1 #2 %#1 fill, clip, #2 user
+ {
+   \path[#1,#2,rotate~around={50\char_generate:nn{58}{12}(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35~and~0.15);
+ }
+
+\cs_new_protected:Npn \__@@_body_path:nn #1 #2 %#1 fill, clip, #2 user
+ {
+   \path[#1,#2] (0,0.75) ellipse (0.55~and~0.65);
+ }
+
+\cs_new_protected:Npn \__@@_init_path:
+  {
+    \__@@_rightarm_path:nn {}{}
+    \__@@_leftarm_path:nn  {}{}
+    \__@@_body_path:nn     {}{}
+  }
+
+\cs_new_protected:Npn \__@@_set_coordinates:
+  {
+    \coordinate (bearcenter) at (0,0.75);
+    \coordinate (bearchest)  at (0.25,0.9);
+  }
+
+\cs_new_protected:Npn \__@@_clipping_path:
+  {
+    \clip  (0, 1.55)     circle (0.5)    [@@reverseclip];
+    \clip  (0.425, 0.3)  circle (0.28)   [@@reverseclip];
+    \clip  (-0.425, 0.3) circle (0.28)   [@@reverseclip];
+    \clip (-1,0.6) --++ (0.45,0)--++(-0.5,1) --cycle[@@reverseclip] ;
+    \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,1) --cycle[@@reverseclip] ;
+    \clip(-1,0.5) rectangle (1,1.2);
+  }
+
+\NewDocumentCommand\bearwear { O {} }
+  {
+    %\begin{scope}[even odd rule]
+     % handle keys
+     \__@@_init_path:
+     \__@@_set_coordinates:
+     \__@@_clipping_path:
+    %\end{scope}
+  }
 %</package>
 %    \end{macrocode}
 % \PrintIndex

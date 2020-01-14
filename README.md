@@ -1,6 +1,6 @@
-# bearwear - dress tikzbear with shirts
+# bearwear - A package for tikz bear fashion
 
-Ulrike Fischer 2020
+Idea: Bär, Implementation: Ulrike Fischer 2020
 
 ![Version: 0.1](https://img.shields.io/badge/current_version-0.1-blue.svg?style=flat-square)
 ![Date: 2020-01-14](https://img.shields.io/badge/date-2020--01--14-blue.svg?style=flat-square)

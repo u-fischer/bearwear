@@ -1,5 +1,6 @@
-# bearwear --- A package to create shirts for a tikzbear
-Packageversion: 0.1 Idea: Bär, Implementation: Ulrike Fischer 2020
+# bearwear --- A package for tikz bear fashion
+Packageversion: 0.1 
+Idea: Bär, Implementation: Ulrike Fischer 2020
 Packagedate: 2020-01-14
 
 ## LICENSE

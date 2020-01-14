@@ -39,7 +39,7 @@ ctanreadme= "ctanreadme.md"
 typesetexe = "lualatex"
 packtdszip   = false
 installfiles = {
-                "**/*.code.tex",
+                "**/*.sty",
                }  
                
 sourcefiles  = {

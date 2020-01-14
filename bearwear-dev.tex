@@ -11,11 +11,12 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \bear
 \end{tikzpicture}}}}}
 
-\tikzset{reverseclip/.style={insert path={
-   (current bounding box.south west) --(current bounding box.north west)
- --(current bounding box.north east) --  (current bounding box.south east)
- -- cycle} }}
- 
+\usepackage{bearwear}
+%\tikzset{bearwearreverseclip/.style={insert path={
+%   (current bounding box.south west) --(current bounding box.north west)
+% --(current bounding box.north east) --  (current bounding box.south east)
+% -- cycle} }}
+
  \tikzset{
   hippo1/.pic = {
    \begin{scope}[scale=0.4,transform shape]
@@ -26,22 +27,12 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
   \end{scope}},}
 \begin{document}
 \bearwearlogo
-
+\newcommand\rightarm{(0.525,0.9) ellipse (0.35 and 0.15)}
+\newcommand\rightarmrotate{}
 \begin{tikzpicture}[scale=3]
-  \bear
+  %\bear
   \begin{scope}[even odd rule]
-  \path[rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
-  \path[rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15); %left arm
-  \path (0,0.75) ellipse (0.55 and 0.65); %body
-% 
-  \coordinate (bearcenter) at (0,0.75);
-  \coordinate (bearchest) at (0.25,0.9);
-  \clip  (0, 1.55) circle (0.5)[reverseclip];
-  \clip  (0.425, 0.3) circle (0.28)[reverseclip];
-  \clip  (-0.425, 0.3) circle (0.28)[reverseclip];
-  \clip (-1,0.6) --++ (0.45,0)--++(-0.5,1) --cycle[reverseclip] ;
-  \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,1) --cycle[reverseclip] ;
-  \clip(-1,0.5) rectangle (1,1.2);
+  \bearwear
   \fill[yellow,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15);
   \fill[rotate around={-50:(0.525,0.9)},path picture={
  % \node at (bearrightbreast) {\includegraphics[width=2cm,clip,trim=2cm 1cm 2cm
@@ -56,7 +47,7 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
   \fill[yellow,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
 %  \fill[pattern={Stars[points=6,radius=0.5mm,distance=1.5mm]},pattern color=yellow,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
   \fill[red] (0,0.75) ellipse (0.55 and 0.65);
- \fill[pattern= 
+ \fill[pattern=
        horizontal lines light blue,
        %{Stars[points=5,radius=0.5mm,distance=1.5mm]},
         pattern color=yellow,
@@ -66,7 +57,7 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
   \node at (bearcenter) {\includegraphics[width=5cm]{tartan3}};
   \path ([yshift=-2mm]bearchest) pic{hippo1};
   %\fill[red] (bearrightbreast) circle(2pt);
-  %\fill[red] (bearcenter) circle(2pt); 
+  %\fill[red] (bearcenter) circle(2pt);
   }]
   (0,0.75) ellipse (0.55 and 0.65);
   %\fill[europablau] (0,0.7) ellipse (0.35 and 0.4);
@@ -78,12 +69,7 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \begin{tikzpicture}
   \bear
   \begin{scope}[even odd rule]
-  \clip  (0, 1.55) circle (0.5)[reverseclip]; %head
-  \clip  (0.425, 0.3) circle (0.28)[reverseclip]; %right foot
-  \clip  (-0.425, 0.3) circle (0.28)[reverseclip]; %left foot
-  \clip (-1,0.6) --++ (0.45,0)--++(-0.5,5) --cycle[reverseclip] ; %left arm
-  \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,5) --cycle[reverseclip] ; %right arm
-  \clip(-1,0.5) rectangle (1,1.2); %overall clip
+  \bearwear
   \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
   \fill[red,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
   \fill[green] (0,0.75) ellipse (0.55 and 0.65); %body
@@ -95,14 +81,8 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
 \begin{tikzpicture}
   \bear
   \begin{scope}[even odd rule]
-
-  \clip  (0, 1.55) circle (0.5)[reverseclip]; %head
-  \clip  (0.425, 0.3) circle (0.28)[reverseclip]; %right foot
-  \clip  (-0.425, 0.3) circle (0.28)[reverseclip]; %left foot
-  \clip (-1,0.6) --++ (0.45,0)--++(-0.5,5) --cycle[reverseclip] ; %left arm
-  \clip ( 1,0.6) --++ (-0.45,0)--++(0.5,5) --cycle[reverseclip] ; %right arm
-  \clip(-1,0.5) rectangle (1,1.2); %overall clip
- % \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
+  \bearwear
+  % \fill[red,rotate around={-50:(0.525,0.9)}](0.525,0.9) ellipse (0.35 and 0.15); %right arm
  % \fill[red,rotate around={50:(-0.525,0.9)}] (-0.525,0.9) ellipse (0.35 and 0.15);
   \fill[europablau] (0,0.75) ellipse (0.55 and 0.65);
   %\fill[europablau] (0,0.7) ellipse (0.35 and 0.4);
