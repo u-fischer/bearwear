@@ -1,6 +1,6 @@
 -- Build script for bearwear
 packageversion="0.1"
-packagedate="2020-01-13"
+packagedate="2020-01-15"
 
 module   = "bearwear"
 ctanpkg  = "bearwear"
@@ -32,21 +32,14 @@ uploadconfig = {
 
 
 -- ctan setup
-docfiles = {"tartan3.png","baer.png","montblanc.jpg","ulrike.pdf"}
+docfiles = {"tartan3.jpg","baer.png","montblanc.jpg","ulrike.pdf"}
 textfiles= {"ctanreadme.md"}
 ctanreadme= "ctanreadme.md"
 
-typesetexe = "lualatex"
 packtdszip   = false
-installfiles = {
-                "**/*.sty",
-               }  
-               
-sourcefiles  = {
-                "**/*.dtx",
-                "**/*.ins",
-               }
-                            
+
+-- doc
+typesetexe = "lualatex"
 typesetruns = 2
 
 
