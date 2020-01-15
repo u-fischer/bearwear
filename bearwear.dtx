@@ -325,7 +325,8 @@
  \subsection{Coloring the shirts}
 
  The body and the arms of the shirts can be colored. They are three basic keys: \bearwearkey{leftarm}, \bearwearkey{rightarm} and \bearwearkey{body}, and two meta keys: \bearwearkey{arms} and \bearwearkey{shirt}.
-
+ Basically every option that would make sense in a \lstinline|\fill|  is allowed here.
+ Patterns e.g. would work too.
  \begin{tcblisting}{tikz lower}
   \bear;
   \bearwear
@@ -347,10 +348,9 @@
        bottom color=red}];
  \end{tcblisting}
 
- Basically every option that would make sense in a \verb+\fill+  is allowed here.
- Patterns e.g. would work too:
 
- \begin{tcblisting}{tikz lower}
+
+ \begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak}
    \bear;
    \bearwear
      [v-neckline,
@@ -472,7 +472,7 @@
  \tikz{\bear;\bearwear;}
  \tikz{\bear;\bearwear;}
  \end{tcblisting}
- \section{The brains behind \bearwearlogo{}}
+ \section{The brains behind \texorpdfstring{\bearwearlogo{}}{BearWear}}
  \includegraphics[width=3cm]{baer}
  \begin{description}
  \item[Ulrike]

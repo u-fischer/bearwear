@@ -14,7 +14,7 @@ build/*
 *.tmp
 *.hd
 *.listing
-
+*.curlopt
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
