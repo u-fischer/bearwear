@@ -32,17 +32,16 @@ uploadconfig = {
 
 
 -- ctan setup
-docfiles = {"tartan3.jpg","baer.png","montblanc.jpg","ulrike.pdf","flag.pdf","latex-project-logo.pdf"}
+docfiles = {"tartan3.jpg","baer.png","montblanc.jpg","ulrike.pdf","flag.pdf","latex-project-logo.pdf","bearwear-doc.tex"}
 textfiles= {"ctanreadme.md"}
 ctanreadme= "ctanreadme.md"
 
 packtdszip   = false
 
 -- doc
-typesetexe = "lualatex"
+unpackfiles      = {"bearwear.ins"}
+typesetexe = "lualatex-dev"
 typesetruns = 2
-
-
 
 -- kpse.set_program_name ("kpsewhich")
 -- if not release_date then
