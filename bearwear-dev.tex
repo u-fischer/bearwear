@@ -6,10 +6,6 @@
 \usetikzlibrary{patterns,patterns.meta}
 \definecolor{europablue}{RGB}{00,33,99}
 
-\newcommand\bearwearlogo{{\sffamily\fontsize{10pt}{12pt}\selectfont
-BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0.03)},scale=0.1]
-\bear
-\end{tikzpicture}}}}}
 
 \usepackage{bearwear}
 
@@ -23,8 +19,9 @@ BearWear\raisebox{1ex}[0pt][0pt]{\textcircled{\begin{tikzpicture}[baseline={(0,0
       \end{scope}
   \end{scope}},}
 \begin{document}
+\Huge 
 \bearwearlogo
-
+\end{document}
 \begin{tikzpicture}[scale=3]
   \bear
   \draw[red]  (-0.3, 1.55) -- (0.3, 1.55) -- (0,1) --cycle; %v-neck

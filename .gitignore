@@ -12,6 +12,8 @@ build/*
 *.out
 *.toc
 *.tmp
+*.hd
+*.listing
 
 ## Intermediate documents:
 *.dvi
