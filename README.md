@@ -3,7 +3,7 @@
 Idea: Bär, Implementation: Ulrike Fischer 2020
 
 ![Version: 0.1](https://img.shields.io/badge/current_version-0.1-blue.svg?style=flat-square)
-![Date: 2020-01-14](https://img.shields.io/badge/date-2020--01--14-blue.svg?style=flat-square)
+![Date: 2020-01-15](https://img.shields.io/badge/date-2020--01--15-blue.svg?style=flat-square)
 [![License: LPPL1.3c ](https://img.shields.io/badge/license-LPPL1.3c-blue.svg?style=flat-square)](https://ctan.org/license/lppl1.3c)
 
 ![](example1.png)
