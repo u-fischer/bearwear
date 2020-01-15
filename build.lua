@@ -36,6 +36,10 @@ docfiles = {"tartan3.jpg","baer.png","montblanc.jpg","ulrike.pdf","flag.pdf","la
 textfiles= {"ctanreadme.md"}
 ctanreadme= "ctanreadme.md"
 
+function docinit_hook()
+  return cp("bearwear-doc.tex",unpackdir,typesetdir)
+end
+
 packtdszip   = false
 
 -- doc
