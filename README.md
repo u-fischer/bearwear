@@ -26,7 +26,7 @@ bearwear.pdf.
 
 ## DESCRIPTION
 
-This package offers commands to print shirts for a tikzbear.
+This package offers commands to design shirts for a tikzbear.
 
 ## REQUIREMENTS
-It needs a recent version of pgf. 
+It needs a recent version of pgf and the tikzlings-bears package. 
