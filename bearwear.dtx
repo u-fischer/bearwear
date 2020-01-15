@@ -99,7 +99,7 @@
 %</driver>
 % \fi
 % \maketitle
-% \input{bearwear-doc}
+% {\catcode`\%=14 \input{bearwear-doc}}
 %
 % \StopEventually{}
 %    \begin{macrocode}
@@ -290,7 +290,7 @@
 %</package>
 %    \end{macrocode}
 %<*docu>
- \section{Basic Usage}
+\section{Basic Usage}
 
  The package is based on \TikZ{} and the main command should be used in a \texttt{tikzpicture} or -- as shown in some of the examples -- with \verb+\tikz+.
 
@@ -313,12 +313,11 @@
    [muscle shirt,v-neckline];
   \end{tcblisting}
 
-\newpage
  \subsection{Dressing the bear}
 
  To dress the bear with the shirt, simply add the \verb+\bear+ command from the \bearwearkey{tikzlings-bears} package.
 
- \begin{tcblisting}{before=\par\parindent=0pt\nopagebreak}
+ \begin{tcblisting}{before=\parindent0pt\nopagebreak}
  \tikz{\bear;\bearwear[v-neckline];}
  \tikz{\bear;\bearwear[muscle shirt];}
   \end{tcblisting}
@@ -348,7 +347,6 @@
        bottom color=red}];
  \end{tcblisting}
 
-
  Basically every option that would make sense in a \verb+\fill+  is allowed here.
  Patterns e.g. would work too:
 
@@ -360,7 +358,6 @@
         {pattern=
           horizontal lines light blue}];
  \end{tcblisting}
-
 
  \subsection{Additional patterns}
 
@@ -380,8 +377,6 @@
           radius=0.5mm,distance=1.5mm]},
         pattern color=yellow}];
  \end{tcblisting}
-
-
 
  \subsection{Decorations}
 
@@ -431,7 +426,6 @@
         pic{hippo};}];
  \end{tcblisting}
 
-
  \begin{tcblisting}{tikz lower}
   \bear;
   \bearwear[
@@ -451,7 +445,7 @@
 
  Scaling works as expected, but don't forget that nodes in \TikZ{} normally don't scale if you don't use the \lstinline|transform shape| key:
 
- \begin{tcblisting}{tikz lower,before=\nopagebreak,}
+ \begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak,}
   \begin{scope}[scale=1.5]
   \bear;
   \bearwear[
@@ -468,6 +462,16 @@
    \end{scope}
  \end{tcblisting}
 
+ \subsection{Setting up defaults}
+
+ With \lstinline|\bearwearsetup| you can change the defaults:
+
+ \begin{tcblisting}{}
+ \bearwearsetup
+   {body=green!50!black,arms=green}
+ \tikz{\bear;\bearwear;}
+ \tikz{\bear;\bearwear;}
+ \end{tcblisting}
  \section{The brains behind \bearwearlogo{}}
  \includegraphics[width=3cm]{baer}
  \begin{description}
@@ -504,4 +508,4 @@
  \bearwearlogo{}?
  \item[Bär] The death of Karl Lagerfeld. Someone had to fill the void.
  \end{description}
-%</docu>
+ %</docu>
