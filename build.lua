@@ -32,7 +32,7 @@ uploadconfig = {
 
 
 -- ctan setup
-docfiles = {"tartan3.png"}
+docfiles = {"tartan3.png","baer.png","montblanc.jpg","ulrike.pdf"}
 textfiles= {"ctanreadme.md"}
 ctanreadme= "ctanreadme.md"
 
