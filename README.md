@@ -9,6 +9,7 @@ Idea: Bär, Implementation: Ulrike Fischer 2020
 ![](example1.png)
 ![](example2.png)
 ![](example3.png)
+![](example4.png)
 
 ## INSTALLATION
 
@@ -22,7 +23,7 @@ The dtx-file contains the documentation, it should at best be compiled with lual
 
 ## DOCUMENTATION
 
-bearwear.pdf. 
+[bearwear.pdf on CTAN](http://mirrors.ctan.org/macros/latex/contrib/bearwear/bearwear.pdf) 
 
 ## DESCRIPTION
 
