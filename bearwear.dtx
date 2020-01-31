@@ -318,8 +318,8 @@
  To dress the bear with the shirt, simply add the \verb+\bear+ command from the \bearwearkey{tikzlings-bears} package.
 
  \begin{tcblisting}{before=\parindent0pt\nopagebreak}
- \tikz{\bear;\bearwear[v-neckline];}
- \tikz{\bear;\bearwear[muscle shirt];}
+ \tikz{\bear\bearwear[v-neckline]}
+ \tikz{\bear\bearwear[muscle shirt]}
   \end{tcblisting}
 
  \subsection{Coloring the shirts}
@@ -328,35 +328,35 @@
  Basically every option that would make sense in a \lstinline|\fill|  is allowed here.
  Patterns e.g. would work too.
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear
     [v-neckline,
      leftarm=red,
      rightarm=green,
-     body=blue];
+     body=blue]
  \end{tcblisting}
  \begin{tcblisting}{tikz lower}
-  \bear;
-  \bearwear[arms=green];
+  \bear
+  \bearwear[arms=green]
  \end{tcblisting}
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear
     [shirt=
       {shade,
        top color=blue,
-       bottom color=red}];
+       bottom color=red}]
  \end{tcblisting}
 
 
 
  \begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak}
-   \bear;
+   \bear
    \bearwear
      [v-neckline,
       shirt  =
         {pattern=
-          horizontal lines light blue}];
+          horizontal lines light blue}]
  \end{tcblisting}
 
  \subsection{Additional patterns}
@@ -367,7 +367,7 @@
  \bearwearkey{body pattern}, \bearwearkey{shirt pattern},
 
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear
      [v-neckline,
       shirt=red,
@@ -375,7 +375,7 @@
        {pattern=
          {Stars[points=6,
           radius=0.5mm,distance=1.5mm]},
-        pattern color=yellow}];
+        pattern color=yellow}]
  \end{tcblisting}
 
  \subsection{Decorations}
@@ -384,7 +384,7 @@
  predefined: \bearwearkey{bearheart} and \bearwearkey{beartummy}.
 
  \begin{tcblisting}{tikz lower}
-   \bear;
+   \bear
    \bearwear[shirt deco =
     {\fill[red] (beartummy) circle (1pt);
      \fill[red] (bearheart) circle (1pt);}
@@ -392,7 +392,7 @@
  \end{tcblisting}
 
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear[shirt deco =
     {\node at (beartummy)
      {\includegraphics[width=5cm]
@@ -400,34 +400,34 @@
  \end{tcblisting}
 
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear[body deco=
     {\node at ([yshift=-1mm]bearheart)
       {\includegraphics[width=0.3cm]
-        {flag}};}];
+        {flag}};}]
  \end{tcblisting}
 
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear[
      shirt=Beige!80!black,
      body deco=
       {\node at ([yshift=-1mm]bearheart)
        {\includegraphics[width=0.5cm]
-         {latex-project-logo}};}];
+         {latex-project-logo}};}]
  \end{tcblisting}
 
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear[
      shirt=HotPink,
      body deco=
       {\path  (bearheart)--++(0,-3mm)
-        pic{hippo};}];
+        pic{hippo};}]
  \end{tcblisting}
 
  \begin{tcblisting}{tikz lower}
-  \bear;
+  \bear
   \bearwear[
     arms= DeepSkyBlue,
     body deco =
@@ -447,7 +447,7 @@
 
  \begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak,}
   \begin{scope}[scale=1.5]
-  \bear;
+  \bear
   \bearwear[
     arms= DeepSkyBlue,
     body deco =
@@ -469,8 +469,8 @@
  \begin{tcblisting}{}
  \bearwearsetup
    {body=green!50!black,arms=green}
- \tikz{\bear;\bearwear;}
- \tikz{\bear;\bearwear;}
+ \tikz{\bear\bearwear}
+ \tikz{\bear\bearwear}
  \end{tcblisting}
  \section{The brains behind \texorpdfstring{\bearwearlogo{}}{BearWear}}
  \includegraphics[width=3cm]{baer}
