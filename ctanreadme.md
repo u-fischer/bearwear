@@ -1,7 +1,7 @@
 # bearwear --- A package for tikz bear fashion
-Packageversion: 0.1 
+Packageversion: 0.2 
 Idea: Bär, Implementation: Ulrike Fischer 2020
-Packagedate: 2020-01-15
+Packagedate: 2020-04-21
 
 ## LICENSE
 LaTeX Project Public License
