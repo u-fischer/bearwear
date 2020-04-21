@@ -1,6 +1,6 @@
 -- Build script for bearwear
-packageversion="0.1"
-packagedate="2020-01-15"
+packageversion="0.2"
+packagedate="2020-04-21"
 
 module   = "bearwear"
 ctanpkg  = "bearwear"
@@ -22,7 +22,7 @@ uploadconfig = {
   support    = mydata.github .. "bearwear/issues",
   uploader = mydata.name,
   email    = mydata.email,
-  update   = false ,
+  update   = true ,
   topic=    "amusements",
   description=[[The package offers tools to create shirts for tikzbears from the tikzlings package.]],
   announcement_file="ctan.ann"              
