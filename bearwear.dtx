@@ -441,6 +441,14 @@
      }]
  \end{tcblisting}
 
+\begin{tcblisting}{tikz lower}
+  \bear\bearwear[shirt=white,
+   body deco =
+    {\node[font=\tiny\bfseries\sffamily]
+      at ([yshift=0.5mm]beartummy)
+       {Teh Shirt};}]
+ \end{tcblisting}
+ 
  \subsection{Scaling}
 
  Scaling works as expected, but don't forget that nodes in \TikZ{} normally don't scale if you don't use the \lstinline|transform shape| key:
