@@ -107,7 +107,7 @@
 %<*package>
 \RequirePackage{xparse}
 \RequirePackage{tikzlings-bears}
-\ProvidesExplPackage {bearwear} {2020-01-15} {0.1}
+\ProvidesExplPackage {bearwear} {2020-04-21} {0.2}
   {A package for tikz bear fashion}
 \ProcessOptions\relax
 % a tikzset style to reverse the clip:
@@ -224,6 +224,7 @@
 \tl_new:N \l_@@_leftarm_deco_tl
 \tl_new:N \l_@@_rightarm_deco_tl
 \tl_new:N \l_@@_body_deco_tl
+\tl_new:N \l_@@_tikzkeys_tl
 
 \keys_define:nn {@@}
  {
@@ -265,7 +266,8 @@
   {
     \begin{scope}[even~odd~rule]
      % handle keys
-     \keys_set:nn { @@ } {#1}
+     \keys_set_known:nnN { @@ } {#1}\l_@@_tikzkeys_tl
+     \exp_args:No\tikzset{\l_@@_tikzkeys_tl}
      \@@_init_path:
      \@@_set_coordinates:
      \@@_clipping_path:
@@ -448,10 +450,13 @@
       at ([yshift=0.5mm]beartummy)
        {Teh Shirt};}]
  \end{tcblisting}
- 
+
  \subsection{Scaling}
 
- Scaling works as expected, but don't forget that nodes in \TikZ{} normally don't scale if you don't use the \lstinline|transform shape| key:
+ Scaling works as expected, but don't forget that nodes in \TikZ{} normally don't scale if you don't use the \lstinline|transform shape| key.
+ You can use a scope for the scaling, or the \texttt{scale} key as as unknown keys are passed to tikz --
+ in this case don't forget that both
+ the bear and the shirt needs the same scaling factor.
 
  \begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak,}
   \begin{scope}[scale=1.5]
@@ -469,6 +474,32 @@
      }]
    \end{scope}
  \end{tcblisting}
+
+\begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak,}
+  \bear[scale=0.7]
+  \bearwear[scale=0.7,
+    arms= DeepSkyBlue,
+    body deco =
+     {\node at ([yshift=-2mm]beartummy)
+       {\includegraphics[width=4cm]
+         {montblanc}};
+      \node[text=white,
+           font=\tiny\sffamily]
+        at ([yshift=2mm]beartummy)
+        {{Mont Blanc}};
+     }]
+ \end{tcblisting}
+
+ \subsection{Moving}
+
+It is possible to move the bear and the shirt with it. Ensure that the same shift
+is used if you don't want to undress the bear.
+
+\begin{tcblisting}{tikz lower,before=\parindent0pt\nopagebreak,}
+  \coordinate (newbear) at (3,0);
+  \bear\bearwear
+  \bear[shift=(newbear)]\bearwear[shirt=red,shift=(newbear)]
+\end{tcblisting}
 
  \subsection{Setting up defaults}
 
