@@ -366,7 +366,7 @@
  As seen in the last example patterns can be added instead of colors, but sometimes it makes sense to
  add them on top to preserve a background color. For this the package provides special \texttt{pattern} keys:\\
  \bearwearkey{leftarm pattern}, \bearwearkey{rightarm pattern}, \bearwearkey{arms pattern},
- \bearwearkey{body pattern}, \bearwearkey{shirt pattern},
+ \bearwearkey{body pattern}, \bearwearkey{shirt pattern} (the example need the tikz library \texttt{patterns.meta}:
 
  \begin{tcblisting}{tikz lower}
   \bear
@@ -383,7 +383,7 @@
  \subsection{Decorations}
 
  The \lstinline|deco| keys add their value to a \texttt{path picture} key. This can be used to place emblems or use graphics as pattern. To help with the placement two coordinates are
- predefined: \bearwearkey{bearheart} and \bearwearkey{beartummy}.
+ predefined: \bearwearkey{bearheart} and \bearwearkey{beartummy} (check the source code for the pic \texttt{hippo} if you want to use it).
 
  \begin{tcblisting}{tikz lower}
    \bear
